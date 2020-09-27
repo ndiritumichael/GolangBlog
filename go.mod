@@ -1,6 +1,6 @@
 module github.com/ndiritumichael/goblog
 
-go 1.13
+go 1.15
 
 require (
 	github.com/badoux/checkmail v1.2.0
