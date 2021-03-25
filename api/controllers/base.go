@@ -26,6 +26,8 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 	if Dbdriver == "mysql" {
 		DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
 		server.DB, err = gorm.Open(Dbdriver, DBURL)
+		//server.DB, err = gorm.Open("mysql", "root:root@/GolangBlog?charset=utf8&parseTime=True&loc=Local")
+
 		if err != nil {
 			fmt.Printf("Cannot connect to %s database", Dbdriver)
 			log.Fatal("This is the error:", err)
@@ -51,6 +53,6 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 }
 
 func (server *Server) Run(addr string) {
-	fmt.Println("Listening to port 8080")
+	fmt.Println("Listening to port " + addr)
 	log.Fatal(http.ListenAndServe(addr, server.Router))
 }
